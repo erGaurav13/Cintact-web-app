@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Box,Button,Text  } from '@chakra-ui/react'
+import { Box,Button,Spinner,Text  } from '@chakra-ui/react'
 import { useParams ,Link} from "react-router-dom";
 import { useEffect,useState } from "react";
 import { getdata } from "../Api/api";
@@ -36,12 +36,19 @@ return <>
   textAlign={"center"} 
   justifyContent="center">
 {/* array of object of SIngle user  */}
-  {data.map((e)=>{
-  return  <>
+{data.length===0?<Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>:null}
+  {data.map((e,i)=>{
+  return  <Box key={i}>
   <Text>Name : {e.firstName} {e.lastName}</Text>
   <Text>Number : {e.number}</Text>
   <Link  to= {`/messagescreen/${e._id}`} > <Button bg={"blue.400"} color="white" w="40%">Send  OTP</Button></Link>
-  </>
+  </Box>
   })}
  </Box>
  </Box>

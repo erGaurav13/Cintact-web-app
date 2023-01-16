@@ -14,18 +14,25 @@ import {
     Td,
     TableContainer,
   } from "@chakra-ui/react";
+  import { Spinner } from '@chakra-ui/react'
   import { Link } from "react-router-dom";
 import { getdata } from "../Api/api";
 
 export  const ListOfContact =()=>{
 
 const [data,setData]=useState([]);
+ 
    useEffect(()=>{ 
+    
     let url="https://kisan-network.onrender.com/users/login";
     getdata(url).then((res)=>{
       setData(res)
     }).catch(e=>console.log(e)) 
+     
      },[]) 
+
+
+
 
 return <>
 
@@ -71,6 +78,13 @@ return <>
                 </Tr>
               </Thead>
               <Tbody>
+                {data.length===0?<Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>:null}
                 {data.map((e, i) => {
                   return (
                      

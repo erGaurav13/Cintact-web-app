@@ -1,5 +1,5 @@
 
-import { Box, Button, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Heading, Spinner, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; 
 import { getdata } from "../Api/api";
@@ -62,6 +62,13 @@ return <>
                 </Tr>
               </Thead>
               <Tbody>
+              {data.length===0?<Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>:null}
                 {/* maping the otp details date and time */}
                 {data.map((e, i) => {
                   return (
